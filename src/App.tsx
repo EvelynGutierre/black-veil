@@ -22,7 +22,13 @@ function getStreakMultiplier(streak: number) {
   return 1;
 }
 export default function App() {
+  const SYSTEM_START_DATE = "2026-05-01";
+  const today = new Date().toISOString().slice(0, 10);
+  const isBeforeStart = today < SYSTEM_START_DATE;
+
   const [xp, setXp] = useState<number>(() => {
+    if (isBeforeStart) return 0;
+
     const saved = localStorage.getItem("black-veil-xp");
     const parsed = saved ? JSON.parse(saved) : 0;
     return Number.isFinite(parsed) ? parsed : 0;
@@ -31,12 +37,6 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("black-veil-xp", JSON.stringify(xp));
   }, [xp]);
-
-  const [dungeonBonusGiven, setDungeonBonusGiven] = useState<boolean>(() => {
-    const saved = localStorage.getItem("black-veil-dungeon-bonus-date");
-    const currentDate = new Date().toISOString().slice(0, 10);
-    return saved === currentDate;
-  });
 
   const [dungeonLocked, setDungeonLocked] = useState(false);
   const [xpPop, setXpPop] = useState<number | null>(null);
@@ -69,15 +69,7 @@ export default function App() {
     localStorage.setItem("black-veil-training-log", JSON.stringify(trainingLog));
   }, [trainingLog]);
 
-  const today = new Date().toISOString().slice(0, 10);
-
   const todayWorkout = getTodayWorkout();
-
-  useEffect(() => {
-    if (dungeonBonusGiven) {
-      localStorage.setItem("black-veil-dungeon-bonus-date", today);
-    }
-  }, [dungeonBonusGiven, today]);
 
   const completedCount = useMemo(
     () => directives.filter((d) => d.completed).length,
@@ -343,18 +335,24 @@ export default function App() {
     const dungeonCleared = rawDungeonCleared || dungeonLocked;
     
     useEffect(() => {
-      if (!today) return;
-      if (!dungeonCleared || dungeonBonusGiven) return;
+      if (!dungeonCleared) return;
+
+      const currentDate = new Date().toISOString().slice(0, 10);
+      const lastBonusDate = localStorage.getItem("black-veil-dungeon-bonus-date");
+
+      if (lastBonusDate === currentDate) return;
 
       const timer = setTimeout(() => {
         const adjustedDungeonBonus = Math.round(50 * streakMultiplier);
+
         setXp((current) => current + adjustedDungeonBonus);
         setXpPop(adjustedDungeonBonus);
-        setDungeonBonusGiven(true);
+
+        localStorage.setItem("black-veil-dungeon-bonus-date", currentDate);
       }, 0);
 
       return () => clearTimeout(timer);
-    }, [dungeonCleared, dungeonBonusGiven, streakMultiplier, today]);
+    }, [dungeonCleared, streakMultiplier]);
 
   const prevRankRef = useRef(rank);
 
@@ -487,7 +485,6 @@ export default function App() {
       return [currentDailyRecord, ...withoutToday];
     });
 
-    setDungeonBonusGiven(false);
     setDungeonLocked(false);
 
     setFinalizeMessage(
