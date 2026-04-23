@@ -1,0 +1,82 @@
+@import "tailwindcss";
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #020617;
+}
+
+@keyframes rankPulse {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.7;
+    box-shadow: 0 0 0 rgba(34, 211, 238, 0);
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 1;
+    box-shadow: 0 0 40px rgba(34, 211, 238, 0.22);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 18px rgba(34, 211, 238, 0.14);
+  }
+}
+
+@keyframes rankFlash {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.rank-popup-pulse {
+  animation: rankPulse 0.65s ease-out forwards;
+}
+
+.rank-flash-overlay {
+  animation: rankFlash 0.55s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(52,211,153,0.2);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(52,211,153,0.6);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0) scale(1.05);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-18px) scale(1);
+  }
+}
