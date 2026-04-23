@@ -16,13 +16,14 @@ export default function AppNav({
 }: Props) {
   return (
     <div className="relative border-t border-cyan-400/10">
-      <div className="flex gap-3">
+      <div className="flex gap-2 overflow-x-auto px-2 pb-1">
         {tabs.map((tab) => (
           <button
+            whitespace-nowrap
             key={tab.id}
             onClick={() => setTab(tab.id)}
             className={`
-              relative px-5 py-2 rounded-xl text-xs tracking-widest uppercase transition-all duration-300
+              relative px-3 py-2 sm:px-5 rounded-xl text-[10px] sm:text-xs tracking-widest uppercase whitespace-nowrap transition-all duration-300
               ${
                 currentTab === tab.id
                   ? "text-cyan-300"
