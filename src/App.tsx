@@ -54,59 +54,6 @@ export default function App() {
     localStorage.setItem("black-veil-xp", JSON.stringify(xp));
   }, [xp]);
 
-  useEffect(() => {
-    const client = supabase;
-    if (!client) return;
-
-    const loadXP = async () => {
-      const { data, error } = await client
-        .from("profiles")
-        .select("id, xp")
-        .limit(1)
-        .single();
-
-      if (error) {
-        console.error("Error loading XP:", error);
-        return;
-      }
-
-      if (data?.xp != null) {
-        setXp(data.xp);
-      }
-    };
-
-    loadXP();
-  }, []);
-
-  useEffect(() => {
-    const client = supabase;
-    if (!client) return;
-
-    const saveXP = async () => {
-      const { data: existing, error: fetchError } = await client
-        .from("profiles")
-        .select("id")
-        .limit(1)
-        .single();
-
-      if (fetchError) {
-        console.error("Error finding profile row:", fetchError);
-        return;
-      }
-
-      const { error: updateError } = await client
-        .from("profiles")
-        .update({ xp, updated_at: new Date().toISOString() })
-        .eq("id", existing.id);
-
-      if (updateError) {
-        console.error("Error saving XP:", updateError);
-      }
-    };
-
-    saveXP();
-  }, [xp]);
-
   const [dungeonLocked, setDungeonLocked] = useState(false);
   const [xpPop, setXpPop] = useState<number | null>(null);
   const { playSound } = useAudio();
@@ -569,6 +516,77 @@ export default function App() {
   const safeXp = Number.isFinite(xp) ? xp : 0;
   const xpIntoCurrentRank = safeXp % xpPerRank;
   const xpProgressPercent = Math.round((xpIntoCurrentRank / xpPerRank) * 100);
+
+  useEffect(() => {
+    const client = supabase;
+    if (!client) return;
+
+    const loadProfile = async () => {
+      const { data, error } = await client
+        .from("profiles")
+        .select("id, xp, directives, training_log, daily_history")
+        .limit(1)
+        .single();
+
+      if (error) {
+        console.error("Error loading profile:", error);
+        return;
+      }
+
+      if (data?.xp != null) {
+        setXp(data.xp);
+      }
+
+      if (Array.isArray(data?.directives) && data.directives.length > 0) {
+        setDirectives(data.directives);
+      }
+
+      if (data?.training_log && typeof data.training_log === "object") {
+        setTrainingLog(data.training_log);
+      }
+
+      if (Array.isArray(data?.daily_history)) {
+        setDailyHistory(data.daily_history);
+      }
+    };
+
+    loadProfile();
+  }, []);
+
+  useEffect(() => {
+    const client = supabase;
+    if (!client) return;
+
+    const saveProfile = async () => {
+      const { data: existing, error: fetchError } = await client
+        .from("profiles")
+        .select("id")
+        .limit(1)
+        .single();
+
+      if (fetchError) {
+        console.error("Error finding profile row:", fetchError);
+        return;
+      }
+
+      const { error: updateError } = await client
+        .from("profiles")
+        .update({
+          xp,
+          directives,
+          training_log: trainingLog,
+          daily_history: dailyHistory,
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", existing.id);
+
+      if (updateError) {
+        console.error("Error saving profile:", updateError);
+      }
+    };
+
+    saveProfile();
+  }, [xp, directives, trainingLog, dailyHistory]);
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden px-3 sm:px-4 md:px-6">
