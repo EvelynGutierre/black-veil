@@ -32,7 +32,17 @@ export default function App() {
     localStorage.setItem("black-veil-xp", JSON.stringify(xp));
   }, [xp]);
 
-  const [dungeonBonusGiven, setDungeonBonusGiven] = useState(false);
+  const [dungeonBonusGiven, setDungeonBonusGiven] = useState<boolean>(() => {
+    const saved = localStorage.getItem("black-veil-dungeon-bonus-date");
+    return saved === today;
+  });
+
+  useEffect(() => {
+    if (dungeonBonusGiven) {
+      localStorage.setItem("black-veil-dungeon-bonus-date", today);
+    }
+  }, [dungeonBonusGiven, today]);
+
   const [dungeonLocked, setDungeonLocked] = useState(false);
   const [xpPop, setXpPop] = useState<number | null>(null);
   const { playSound } = useAudio();
@@ -332,6 +342,7 @@ export default function App() {
     const dungeonCleared = rawDungeonCleared || dungeonLocked;
     
     useEffect(() => {
+      if (!today) return;
       if (!dungeonCleared || dungeonBonusGiven) return;
 
       const timer = setTimeout(() => {
