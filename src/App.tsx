@@ -14,6 +14,7 @@ import { getJobTitle, getRank, getStatusTitle, getStreakBonus, rankOrder, } from
 import { tabs } from "./utils/tabs";
 import { getTodayWorkout } from "./utils/workouts";
 import { AnimatePresence, motion } from "framer-motion";
+import { supabase } from "./lib/supabase";
 
 function getStreakMultiplier(streak: number) {
   if (streak >= 7) return 1.5;
@@ -51,6 +52,53 @@ export default function App() {
 
   useEffect(() => {
     localStorage.setItem("black-veil-xp", JSON.stringify(xp));
+  }, [xp]);
+
+  useEffect(() => {
+    const loadXP = async () => {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("id, xp")
+        .limit(1)
+        .single();
+
+      if (error) {
+        console.error("Error loading XP:", error);
+        return;
+      }
+
+      if (data?.xp != null) {
+        setXp(data.xp);
+      }
+    };
+
+    loadXP();
+  }, []);
+
+  useEffect(() => {
+    const saveXP = async () => {
+      const { data: existing, error: fetchError } = await supabase
+        .from("profiles")
+        .select("id")
+        .limit(1)
+        .single();
+
+      if (fetchError) {
+        console.error("Error finding profile row:", fetchError);
+        return;
+      }
+
+      const { error: updateError } = await supabase
+        .from("profiles")
+        .update({ xp, updated_at: new Date().toISOString() })
+        .eq("id", existing.id);
+
+      if (updateError) {
+        console.error("Error saving XP:", updateError);
+      }
+    };
+
+    saveXP();
   }, [xp]);
 
   const [dungeonLocked, setDungeonLocked] = useState(false);
