@@ -138,7 +138,7 @@ export default function OverviewTab({
         description="Prepare for today’s protocol and monitor active system output."
       />
 
-      <div className="grid gap-3 sm:gap-5 grid-cols-1 lg:grid-cols-[1.15fr_0.85fr]">
+      <div className="grid gap-3 sm:gap-5 grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] max-w-full">
         <HoloPanel title="Status" subtitle="Current pursuit metrics" glow="cyan">
           <div className="relative mt-5">
             {xpPop !== null && (
@@ -171,26 +171,26 @@ export default function OverviewTab({
             </p>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-3">
-            <div className="rounded-2xl border border-cyan-400/10 bg-cyan-400/5 p-4">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-5">
+            <div className="rounded-2xl border border-cyan-400/10 bg-cyan-400/5 p-3 sm:p-4">
               <p className="text-xs uppercase tracking-[0.25em] text-slate-400">
                 Veil
               </p>
-              <p className="mt-3 text-4xl font-bold text-cyan-300">
+              <p className="mt-3 text-3xl sm:text-4xl font-bold text-cyan-300">
                 <AnimatedNumber value={totalVeil} />
               </p>
             </div>
 
-            <div className="rounded-2xl border border-cyan-400/10 bg-cyan-400/5 p-4">
+            <div className="rounded-2xl border border-cyan-400/10 bg-cyan-400/5 p-3 sm:p-4">
               <p className="text-xs uppercase tracking-[0.25em] text-slate-400">Completion</p>
-              <p className="mt-3 text-4xl font-bold text-cyan-200">
+              <p className="mt-3 text-3xl sm:text-4xl font-bold text-cyan-200">
                 {completionRate}%
               </p>
             </div>
 
-            <div className="rounded-2xl border border-cyan-400/10 bg-cyan-400/5 p-4">
+            <div className="rounded-2xl border border-cyan-400/10 bg-cyan-400/5 p-3 sm:p-4">
               <p className="text-xs uppercase tracking-[0.25em] text-slate-400">Rank</p>
-              <p className="mt-3 text-4xl font-bold text-cyan-200">{rank}</p>
+              <p className="mt-3 text-3xl sm:text-4xl font-bold text-cyan-200">{rank}</p>
             </div>
           </div>
 
@@ -228,7 +228,7 @@ export default function OverviewTab({
 
         <div className="space-y-5">
           <HoloPanel title="Notification" subtitle="System broadcast" glow="blue">
-            <p className="text-lg font-medium text-slate-100">
+            <p className="text-base sm:text-lg font-medium text-slate-100">
               {dailyStatus === "Round Complete"
                 ? "Round complete. Maintain your edge."
                 : dailyStatus === "Holding the Line"
@@ -246,7 +246,7 @@ export default function OverviewTab({
           </HoloPanel>
 
           <div
-            className={`relative mb-6 rounded-2xl border px-4 pb-4 pt-20 transition-all duration-500 ${
+            className={`relative mb-6 rounded-2xl border px-3 pb-3 pt-16 sm:px-4 sm:pb-4 sm:pt-20 transition-all duration-500 ${
               dungeonCleared
                 ? "border-emerald-400/40 bg-emerald-500/5 shadow-[0_0_30px_rgba(52,211,153,0.18)]"
                 : "border-purple-400/20 bg-purple-500/5"
@@ -411,7 +411,7 @@ export default function OverviewTab({
           glow="blue"
         >
     {latestSavedRecord ? (
-      <div className="grid gap-3 md:grid-cols-2 text-sm">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2 text-sm">
         <div className="rounded-xl border border-cyan-400/10 bg-slate-950/30 px-4 py-3">
           <p className="text-slate-500">Date</p>
           <p className="mt-1 text-cyan-200">{latestSavedRecord.date}</p>
@@ -462,7 +462,7 @@ export default function OverviewTab({
         {dailyHistory.slice(0, 5).map((entry) => (
           <div
             key={entry.date}
-            className="grid grid-cols-4 items-center rounded-xl border border-cyan-400/10 bg-cyan-400/5 px-4 py-3 text-sm"
+            className="grid grid-cols-2 gap-2 sm:grid-cols-4 items-center rounded-xl border border-cyan-400/10 bg-cyan-400/5 px-3 py-3 text-sm"
           >
             <span className="text-slate-300">{entry.date}</span>
             <span
