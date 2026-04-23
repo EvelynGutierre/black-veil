@@ -55,9 +55,11 @@ export default function App() {
   }, [xp]);
 
   useEffect(() => {
-    if (!supabase) return;
+    const client = supabase;
+    if (!client) return;
+
     const loadXP = async () => {
-      const { data, error } = await supabase
+      const { data, error } = await client
         .from("profiles")
         .select("id, xp")
         .limit(1)
@@ -77,9 +79,11 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!supabase) return;
+    const client = supabase;
+    if (!client) return;
+
     const saveXP = async () => {
-      const { data: existing, error: fetchError } = await supabase
+      const { data: existing, error: fetchError } = await client
         .from("profiles")
         .select("id")
         .limit(1)
@@ -90,7 +94,7 @@ export default function App() {
         return;
       }
 
-      const { error: updateError } = await supabase
+      const { error: updateError } = await client
         .from("profiles")
         .update({ xp, updated_at: new Date().toISOString() })
         .eq("id", existing.id);
