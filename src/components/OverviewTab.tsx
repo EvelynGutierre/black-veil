@@ -138,7 +138,7 @@ export default function OverviewTab({
         description="Prepare for today’s protocol and monitor active system output."
       />
 
-      <div className="grid gap-5 grid-cols-1 lg:grid-cols-[1.15fr_0.85fr]">
+      <div className="grid gap-3 sm:gap-5 grid-cols-1 lg:grid-cols-[1.15fr_0.85fr]">
         <HoloPanel title="Status" subtitle="Current pursuit metrics" glow="cyan">
           <div className="relative mt-5">
             {xpPop !== null && (
