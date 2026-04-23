@@ -493,8 +493,8 @@ export default function App() {
   const xpProgressPercent = Math.round((xpIntoCurrentRank / xpPerRank) * 100);
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-[radial-gradient(circle_at_top,_rgba(20,70,140,0.18),_transparent_25%),linear-gradient(180deg,#010611_0%,#020a1a_45%,#020611_100%)] text-slate-100">
-      <div className="mx-auto w-full max-w-7xl px-4 py-5 md:px-6 md:py-8">
+    <div className="min-h-screen w-full overflow-x-hidden px-3 sm:px-4 md:px-6">
+      <div className="mx-auto w-full max-w-screen-xl px-3 py-4 sm:px-4 md:px-6 md:py-8">
         <div className="relative overflow-hidden rounded-[34px] border border-cyan-400/15 bg-[linear-gradient(180deg,rgba(0,8,26,0.96)_0%,rgba(1,10,28,0.98)_100%)] shadow-[0_0_0_1px_rgba(56,189,248,0.05),0_20px_80px_rgba(2,12,40,0.8)]">
           <div className="pointer-events-none absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(56,189,248,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(56,189,248,0.04)_1px,transparent_1px)] [background-size:28px_28px]" />
           <div className="pointer-events-none absolute inset-x-10 top-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-300/80 to-transparent" />
