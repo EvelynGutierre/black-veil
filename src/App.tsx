@@ -55,6 +55,7 @@ export default function App() {
   }, [xp]);
 
   useEffect(() => {
+    if (!supabase) return;
     const loadXP = async () => {
       const { data, error } = await supabase
         .from("profiles")
@@ -76,6 +77,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    if (!supabase) return;
     const saveXP = async () => {
       const { data: existing, error: fetchError } = await supabase
         .from("profiles")
