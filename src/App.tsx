@@ -25,6 +25,21 @@ export default function App() {
   const SYSTEM_START_DATE = "2026-05-01";
   const today = new Date().toISOString().slice(0, 10);
   const isBeforeStart = today < SYSTEM_START_DATE;
+  
+  useEffect(() => {
+    const resetDone = localStorage.getItem("black-veil-launch-reset-done");
+
+    if (today >= SYSTEM_START_DATE && resetDone !== "true") {
+      localStorage.removeItem("black-veil-xp");
+      localStorage.removeItem("black-veil-directives");
+      localStorage.removeItem("black-veil-training-log");
+      localStorage.removeItem("black-veil-daily-history");
+      localStorage.removeItem("black-veil-dungeon-bonus-date");
+
+      localStorage.setItem("black-veil-launch-reset-done", "true");
+      window.location.reload();
+    }
+  }, [today]);
 
   const [xp, setXp] = useState<number>(() => {
     if (isBeforeStart) return 0;
