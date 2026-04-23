@@ -34,14 +34,9 @@ export default function App() {
 
   const [dungeonBonusGiven, setDungeonBonusGiven] = useState<boolean>(() => {
     const saved = localStorage.getItem("black-veil-dungeon-bonus-date");
-    return saved === today;
+    const currentDate = new Date().toISOString().slice(0, 10);
+    return saved === currentDate;
   });
-
-  useEffect(() => {
-    if (dungeonBonusGiven) {
-      localStorage.setItem("black-veil-dungeon-bonus-date", today);
-    }
-  }, [dungeonBonusGiven, today]);
 
   const [dungeonLocked, setDungeonLocked] = useState(false);
   const [xpPop, setXpPop] = useState<number | null>(null);
@@ -77,6 +72,12 @@ export default function App() {
   const today = new Date().toISOString().slice(0, 10);
 
   const todayWorkout = getTodayWorkout();
+
+  useEffect(() => {
+    if (dungeonBonusGiven) {
+      localStorage.setItem("black-veil-dungeon-bonus-date", today);
+    }
+  }, [dungeonBonusGiven, today]);
 
   const completedCount = useMemo(
     () => directives.filter((d) => d.completed).length,
@@ -353,7 +354,7 @@ export default function App() {
       }, 0);
 
       return () => clearTimeout(timer);
-    }, [dungeonCleared, dungeonBonusGiven, streakMultiplier]);
+    }, [dungeonCleared, dungeonBonusGiven, streakMultiplier, today]);
 
   const prevRankRef = useRef(rank);
 
