@@ -24,26 +24,26 @@ export default function AppHeader({
           <div className="mt-2 flex items-center gap-3">
             <div className="h-3 w-3 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(34,211,238,0.9)]" />
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wide text-cyan-300">
-              BLACK VEIL: HOUNDS
+              SHADOW PROTOCOL
             </h1>
           </div>
           <p className="mt-2 text-xs sm:text-sm text-slate-400">
-            Classified pursuit interface initialized.
+            HOUNDS UNIT // TRAINING SYSTEM ONLINE
           </p>
         </div>
 
         <div className="grid grid-cols-3 gap-2 sm:gap-3 md:min-w-[360px]">
-          <HoloPanel title="Rank" compact glow="blue">
+          <HoloPanel title="RANK" compact glow="blue">
             <div className="text-xl sm:text-2xl md:text-2xl font-bold text-cyan-200">{rank}</div>
           </HoloPanel>
 
-          <HoloPanel title="Veil" compact glow="cyan">
+          <HoloPanel title="POWER" compact glow="cyan">
             <div className="text-xl sm:text-2xl md:text-2xl font-bold text-cyan-300">
               <AnimatedNumber value={totalVeil} />
             </div>
           </HoloPanel>
 
-          <HoloPanel title="Directives" compact glow="violet">
+          <HoloPanel title="QUESTS" compact glow="cyan">
             <div className="text-xl sm:text-2xl md:text-2xl font-bold text-cyan-200">
               {completedCount}/{directivesLength}
             </div>
