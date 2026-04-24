@@ -150,7 +150,7 @@ export default function OverviewTab({
             )}
 
             <div className="mb-2 flex items-center justify-between text-xs uppercase tracking-[0.22em] text-slate-400">
-              <span>XP Progress</span>
+              <span>Experience Sync</span>
               <span>
                 {xpIntoCurrentRank}/{xpPerRank}
               </span>
@@ -418,7 +418,7 @@ export default function OverviewTab({
         </div>
 
         <div className="rounded-xl border border-cyan-400/10 bg-slate-950/30 px-4 py-3">
-          <p className="text-slate-500">Veil</p>
+          <p className="text-slate-500">Power</p>
           <p className="mt-1 text-cyan-200">{latestSavedRecord.totalVeil}</p>
         </div>
 
