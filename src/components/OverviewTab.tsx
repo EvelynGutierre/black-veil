@@ -470,7 +470,7 @@ export default function OverviewTab({
             >
               {entry.rank}
             </span>
-            <span className="text-slate-400">{entry.totalVeil} Veil</span>
+            <span className="text-slate-400">{entry.totalVeil} Power</span>
             <span className="text-slate-400">{entry.readinessScore}%</span>
           </div>
         ))}
