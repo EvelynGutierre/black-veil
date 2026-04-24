@@ -37,14 +37,14 @@ export default function IntelTab({
     <div className="space-y-5">
       <SectionHeader
         eyebrow="System Analysis"
-        title="Intel Dashboard"
-        description="Performance metrics and combat readiness evaluation."
+        title="System Analysis"
+        description="Live evaluation of combat readiness and system output."
       />
 
       <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
         <HoloPanel
-          title="Core Attributes"
-          subtitle="Derived from training and directive completion"
+          title="Operative Attributes"
+          subtitle="Derived from training output and quest completion"
           glow="blue"
         >
           <div className="grid gap-4 sm:grid-cols-2">
@@ -85,7 +85,7 @@ export default function IntelTab({
         >
           <div className="space-y-4 text-sm">
             <div className="flex justify-between">
-              <span className="text-slate-400">Total Veil</span>
+              <span className="text-slate-400">Total Power</span>
               <span className="font-medium text-cyan-300">
                 <AnimatedNumber value={totalVeil} />
               </span>
@@ -115,8 +115,8 @@ export default function IntelTab({
 
       <div className="grid gap-5 lg:grid-cols-2">
         <HoloPanel
-          title="Body Metrics"
-          subtitle="Physical trend tracking"
+          title="Physical Data"
+          subtitle="Body composition and recovery tracking"
           glow="blue"
         >
           <div className="space-y-3 text-sm">

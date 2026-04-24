@@ -200,8 +200,8 @@ export default function OverviewTab({
 
             <p className="mt-3 text-sm text-slate-400">
               {dailyStatus === "Round Complete"
-                ? "All assigned directives are cleared."
-                : `${remainingDirectives.length} directives remain under observation.`}
+                ? "All assigned quests are cleared."
+                : `${remainingDirectives.length} quests remain under observation.`}
             </p>
           </HoloPanel>
 
@@ -327,7 +327,7 @@ export default function OverviewTab({
       </div>
 
       <HoloPanel
-        title="Remaining Questss"
+        title="Remaining Quests"
         subtitle="Incomplete objectives remain active"
         glow="violet"
       >

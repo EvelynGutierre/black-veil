@@ -44,12 +44,12 @@ export default function TrainingTab({
               </div>
 
               <div className="grid grid-cols-[1fr_auto] items-center gap-4">
-                <span className="text-slate-200">Hydration</span>
+                <span className="text-slate-200">Hydration (oz)</span>
                 <span className="text-slate-400">[{trainingLog.water || "--"}]</span>
               </div>
 
               <div className="grid grid-cols-[1fr_auto] items-center gap-4">
-                <span className="text-slate-200">Movement</span>
+                <span className="text-slate-200">Movement Count</span>
                 <span className="text-slate-400">[{trainingLog.steps || "--"}]</span>
               </div>
 

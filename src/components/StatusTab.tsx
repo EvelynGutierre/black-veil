@@ -36,12 +36,12 @@ export default function StatusTab({
   return (
     <div className="space-y-5">
       <SectionHeader
-        eyebrow="Status Window"
+        eyebrow="Operative Window"
         title="Operative Status"
         description="Live classification and attribute display."
       />
 
-      <HoloPanel title="Status" subtitle="Black Veil operative sheet" glow="violet">
+      <HoloPanel title="System Status" subtitle="Shadow Protocol operative sheet" glow="violet">
         <div className="mx-auto max-w-[980px] rounded-[34px] border border-fuchsia-400/20 bg-[linear-gradient(180deg,rgba(18,8,40,0.82)_0%,rgba(5,10,28,0.95)_100%)] p-6 shadow-[0_0_40px_rgba(217,70,239,0.12)]">
           <div className="mx-auto max-w-[700px] rounded-[24px] border border-cyan-200/30 bg-[linear-gradient(180deg,rgba(7,15,33,0.9)_0%,rgba(3,8,20,0.95)_100%)] p-6 shadow-[0_0_25px_rgba(34,211,238,0.08)]">
             <div className="mb-6 flex justify-center">
@@ -64,11 +64,11 @@ export default function StatusTab({
 
               <div className="space-y-2 text-sm">
                 <div className="flex gap-2">
-                  <span className="text-slate-500">Job:</span>
+                  <span className="text-slate-500">Class:</span>
                   <span className="text-cyan-200">{jobTitle}</span>
                 </div>
                 <div className="flex gap-2">
-                  <span className="text-slate-500">Title:</span>
+                  <span className="text-slate-500">System Title:</span>
                   <span className="text-cyan-200">{statusTitle}</span>
                 </div>
                 <div className="flex gap-2">

@@ -16,30 +16,30 @@ export default function DirectivesTab({
   return (
     <div className="space-y-5">
       <SectionHeader
-        eyebrow="Quest Info"
-        title="Active Directives"
-        description="Failure to complete active directives may trigger enforcement."
+        eyebrow="System Quest"
+        title="Active Quests"
+        description="Failure to complete active quests may trigger penalty protocol."
       />
 
       <div className="grid gap-5 lg:grid-cols-[0.78fr_1.22fr]">
         <HoloPanel
-          title="Daily Quest"
-          subtitle="Mandatory completion protocol"
+          title="Daily Quest Protocol"
+          subtitle="Required system objectives"
           glow="blue"
         >
           <div className="mx-auto max-w-[420px] rounded-[30px] border border-cyan-400/12 bg-[linear-gradient(180deg,rgba(4,16,38,0.82)_0%,rgba(2,10,24,0.95)_100%)] p-5 shadow-[0_0_30px_rgba(34,211,238,0.08)]">
             <div className="mb-4 border border-cyan-400/15 bg-cyan-400/5 px-4 py-2 text-center">
               <p className="text-xs uppercase tracking-[0.28em] text-cyan-300/80">
-                Quest Info
+                System Quest
               </p>
             </div>
 
             <p className="text-center text-sm text-slate-300">
-              [Daily Quest: Black Veil operational sequence has arrived.]
+              [Daily Quest: Shadow Protocol objectives have arrived.]
             </p>
 
             <p className="mt-6 text-center text-lg font-semibold text-cyan-200">
-              Goal
+              Objectives
             </p>
 
             <div className="mt-5 space-y-3">
@@ -71,9 +71,9 @@ export default function DirectivesTab({
 
             <div className="mt-8 space-y-2 text-center text-sm leading-7 text-slate-300">
               <p>WARNING: Failure to complete</p>
-              <p>the daily quest will result in</p>
+              <p>the daily quest will result trigger</p>
               <p>
-                an appropriate <span className="text-pink-400">penalty</span>.
+                penatly <span className="text-pink-400">protocol</span>.
               </p>
             </div>
 
@@ -86,8 +86,8 @@ export default function DirectivesTab({
         </HoloPanel>
 
         <HoloPanel
-          title="Directive Board"
-          subtitle="Mark completions to update the quest panel"
+          title="Quest Board"
+          subtitle="Mark objectives to update system progress"
           glow="cyan"
         >
           <div className="space-y-3">
@@ -111,13 +111,13 @@ export default function DirectivesTab({
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <p className="text-[11px] uppercase tracking-[0.25em] text-slate-500">
-                      Directive {String(index + 1).padStart(2, "0")}
+                      Quest {String(index + 1).padStart(2, "0")}
                     </p>
                     <p className="mt-2 text-lg font-medium text-slate-100">
                       {directive.title}
                     </p>
                     <p className="mt-1 text-sm text-slate-400">
-                      Reward: +{directive.reward} Veil
+                      Reward: +{directive.reward} Power
                     </p>
                   </div>
 
