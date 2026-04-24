@@ -33,6 +33,9 @@ type Props = {
   xpProgressPercent: number;
   xpPop: number | null;
   streakMultiplier: number;
+  playSound: (src: string, volume?: number, interrupt?: boolean) => void;
+  completedBlocks: number[];
+  toggleBlock: (index: number) => void;
 };
 
 export default function OverviewTab({
@@ -49,7 +52,6 @@ export default function OverviewTab({
   latestSavedRecord,
   dailyHistory,
   currentStreak,
-  toggleDirective,
   todayWorkout,
   xp,
   xpIntoCurrentRank,
@@ -57,77 +59,20 @@ export default function OverviewTab({
   xpProgressPercent,
   xpPop,
   streakMultiplier,
+  completedBlocks,
+  toggleBlock,
 }: Props) {
-  const completedDungeonBlocks = todayWorkout.blocks.filter((block) => {
-  const lower = block.toLowerCase();
 
-    return (
-      (lower.includes("run") &&
-        directives.some((d) => d.id === "run" && d.completed)) ||
-
-      (lower.includes("push") &&
-        directives.some((d) => d.id === "pushups" && d.completed)) ||
-
-      (lower.includes("hang") &&
-        directives.some((d) => d.id === "dead_hang" && d.completed)) ||
-
-      (lower.includes("boxing") &&
-        directives.some((d) => d.id === "boxing" && d.completed)) ||
-
-      (lower.includes("steps") &&
-        directives.some((d) => d.id === "steps" && d.completed)) ||
-
-      ((lower.includes("plank") ||
-        lower.includes("glute") ||
-        lower.includes("plank") ||
-        lower.includes("glute") ||
-        lower.includes("mountain") ||
-        lower.includes("squat") ||
-        lower.includes("lunge") ||
-        lower.includes("wall sit") ||
-        lower.includes("stairs") ||
-        lower.includes("carry") ||
-        lower.includes("step-up")) &&
-        directives.some((d) => d.id === "workout" && d.completed))
-    );
-  }).length;
+  const completedDungeonBlocks = completedBlocks.length;
 
   const dungeonTotalBlocks = todayWorkout.blocks.length;
   const dungeonCompletionRate =
-    dungeonTotalBlocks === 0
-      ? 0
-      : Math.round((completedDungeonBlocks / dungeonTotalBlocks) * 100);
+    dungeonTotalBlocks === 0 ? 0 : Math.round((completedDungeonBlocks / dungeonTotalBlocks) * 100);
 
   const dungeonCleared = completedDungeonBlocks === dungeonTotalBlocks;
 
-  function getDirectiveIdForBlock(block: string) {
-    const lower = block.toLowerCase();
-
-    if (lower.includes("run")) return "run";
-    if (lower.includes("push")) return "pushups";
-    if (lower.includes("hang")) return "dead_hang";
-    if (lower.includes("boxing")) return "boxing";
-    if (lower.includes("steps")) return "steps";
-
-    if (
-      lower.includes("plank") ||
-      lower.includes("glute") ||
-      lower.includes("mountain") ||
-      lower.includes("squat") ||
-      lower.includes("lunge") ||
-      lower.includes("wall sit") ||
-      lower.includes("stairs") ||
-      lower.includes("carry") ||
-      lower.includes("step-up")
-    ) {
-      return "workout";
-    }
-
-    return null;
-  }
-
   const [showDungeonClearBanner, setShowDungeonClearBanner] = useState(false);
-    const prevDungeonClearedRef = useRef(dungeonCleared);
+  const prevDungeonClearedRef = useRef(dungeonCleared);
 
     useEffect(() => {
       if (!prevDungeonClearedRef.current && dungeonCleared) {
@@ -332,47 +277,18 @@ export default function OverviewTab({
 
             <ul className="space-y-1 text-sm text-slate-200">
               {todayWorkout.blocks.map((block, i) => {
-                const lower = block.toLowerCase();
-                const completed =
-                  (lower.includes("run") &&
-                    directives.some((d) => d.id === "run" && d.completed)) ||
-
-                  (lower.includes("push") &&
-                    directives.some((d) => d.id === "pushups" && d.completed)) ||
-
-                  (lower.includes("hang") &&
-                    directives.some((d) => d.id === "dead_hang" && d.completed)) ||
-
-                  (lower.includes("boxing") &&
-                    directives.some((d) => d.id === "boxing" && d.completed)) ||
-
-                  (lower.includes("steps") &&
-                    directives.some((d) => d.id === "steps" && d.completed)) ||
-
-                  (lower.includes("plank") ||
-                  lower.includes("glute") ||
-                  lower.includes("mountain") ||
-                  lower.includes("squat") ||
-                  lower.includes("lunge") ||
-                  lower.includes("wall sit") ||
-                  lower.includes("stairs") ||
-                  lower.includes("carry") ||
-                  lower.includes("step-up") &&
-                    directives.some((d) => d.id === "workout" && d.completed));
-                const directiveId = getDirectiveIdForBlock(block);
+                const completed = completedBlocks.includes(i);
                   
                 return (
                   <li key={i}>
                     <button
                       type="button"
-                      onClick={() => {
-                        if (directiveId) toggleDirective(directiveId);
-                      }}
-                      className={`flex w-full items-center gap-2 rounded-lg px-2 py-1 text-left transition ${
+                      onClick={() => toggleBlock(i)}
+                      className={`flex w-full cursor-pointer items-center gap-2 rounded-lg px-2 py-1 text-left transition ${
                         completed
                           ? "text-emerald-300 line-through"
                           : "text-slate-200 hover:bg-white/5"
-                      } ${directiveId ? "cursor-pointer" : "cursor-default"}`}
+                      }`}
                     >
                       <span>{completed ? "✓" : "•"}</span>
                       <span>{block}</span>

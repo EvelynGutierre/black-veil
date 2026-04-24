@@ -149,7 +149,11 @@ export default function App() {
   const rank = useMemo(() => getRank(totalVeil), [totalVeil]);
   const statusTitle = useMemo(() => getStatusTitle(rank), [rank]);
   const jobTitle = useMemo(() => getJobTitle(rank), [rank]);
-  const todayWorkout = getTodayWorkout(rank);
+  const todayWorkout = getTodayWorkout(
+    rank,
+    new Date(),
+    Number(trainingLog.sleep || 0)
+  );
 
   const strength = useMemo(() => {
     let score = 5;
@@ -321,6 +325,33 @@ export default function App() {
   }, [dailyHistory, currentDailyRecord, today]);
 
   const latestSavedRecord = dailyHistoryWithToday[0] ?? null;
+  const [completedBlocks, setCompletedBlocks] = useState<number[]>([]);
+
+  function toggleBlock(index: number) {
+  setCompletedBlocks((prev) =>
+    prev.includes(index)
+      ? prev.filter((i) => i !== index)
+      : [...prev, index]
+  );
+
+  playSound(
+    completedBlocks.includes(index)
+      ? "/sounds/check-off.mp3"
+      : "/sounds/check-on.mp3",
+    0.45,
+    false
+  );
+}
+
+function toggleAllBlocks() {
+  if (completedBlocks.length === todayWorkout.blocks.length) {
+    setCompletedBlocks([]);
+    playSound("/sounds/check-off.mp3", 0.45, false);
+  } else {
+    setCompletedBlocks(todayWorkout.blocks.map((_, i) => i));
+    playSound("/sounds/check-on.mp3", 0.45, false);
+  }
+}
 
   const completedDungeonBlocks = todayWorkout.blocks.filter((block) => {
       const lower = block.toLowerCase();
@@ -648,6 +679,9 @@ export default function App() {
                     xpProgressPercent={xpProgressPercent}
                     xpPop={xpPop}
                     streakMultiplier={streakMultiplier}
+                    playSound={playSound}
+                    completedBlocks={completedBlocks}
+                    toggleBlock={toggleBlock}
                   />
                 )}
 
@@ -655,6 +689,7 @@ export default function App() {
                   <DirectivesTab
                     directives={directives}
                     toggleDirective={toggleDirective}
+                    toggleAllBlocks={toggleAllBlocks}
                   />
                 )}
 

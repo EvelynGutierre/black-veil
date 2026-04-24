@@ -30,6 +30,9 @@ export default function AppHeader({
           <p className="mt-2 text-xs sm:text-sm text-slate-400">
             HOUNDS UNIT // TRAINING SYSTEM ONLINE
           </p>
+          <p className="text-xs text-cyan-300/60 tracking-widest">
+            THE SYSTEM USES ME. I USE THE SYSTEM.
+          </p>
         </div>
 
         <div className="grid grid-cols-3 gap-2 sm:gap-3 md:min-w-[360px]">

@@ -5,11 +5,13 @@ import SectionHeader from "./SectionHeader";
 type Props = {
   directives: Directive[];
   toggleDirective: (id: string) => void;
+  toggleAllBlocks: () => void;
 };
 
 export default function DirectivesTab({
   directives,
   toggleDirective,
+  toggleAllBlocks,
 }: Props) {
   return (
     <div className="space-y-5">
@@ -92,7 +94,12 @@ export default function DirectivesTab({
             {directives.map((directive, index) => (
               <button
                 key={directive.id}
-                onClick={() => toggleDirective(directive.id)}
+                onClick={() => {
+                  if (directive.id === "workout") {
+                    toggleAllBlocks();
+                  }
+                  toggleDirective(directive.id);
+                }}
                 className={`group relative w-full overflow-hidden rounded-[22px] border px-5 py-5 text-left transition ${
                   directive.completed
                     ? "border-cyan-300/35 bg-cyan-400/10 shadow-[0_0_18px_rgba(34,211,238,0.08)]"
