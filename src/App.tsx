@@ -85,8 +85,6 @@ export default function App() {
     localStorage.setItem("black-veil-training-log", JSON.stringify(trainingLog));
   }, [trainingLog]);
 
-  const todayWorkout = getTodayWorkout();
-
   const completedCount = useMemo(
     () => directives.filter((d) => d.completed).length,
     [directives]
@@ -151,6 +149,7 @@ export default function App() {
   const rank = useMemo(() => getRank(totalVeil), [totalVeil]);
   const statusTitle = useMemo(() => getStatusTitle(rank), [rank]);
   const jobTitle = useMemo(() => getJobTitle(rank), [rank]);
+  const todayWorkout = getTodayWorkout(rank);
 
   const strength = useMemo(() => {
     let score = 5;

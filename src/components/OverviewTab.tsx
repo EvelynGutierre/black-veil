@@ -25,6 +25,7 @@ type Props = {
     title: string;
     focus: string;
     blocks: string[];
+    difficulty?: string;
   }
   xp: number;
   xpIntoCurrentRank: number;
@@ -276,6 +277,11 @@ export default function OverviewTab({
             <h3 className="text-lg font-semibold text-purple-200">
               {todayWorkout.title}
             </h3>
+            {todayWorkout.difficulty && (
+              <p className="mt-1 text-[10px] uppercase tracking-[0.25em] text-purple-300/70">
+                {todayWorkout.difficulty}
+              </p>
+            )}
 
             <p className="mb-3 text-sm text-slate-300">
               {todayWorkout.focus}

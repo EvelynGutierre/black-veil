@@ -2,6 +2,7 @@ export type WorkoutDay = {
   title: string;
   focus: string;
   blocks: string[];
+  difficulty?: string;
 };
 
 export const weeklyWorkouts: Record<number, WorkoutDay> = {
@@ -89,6 +90,55 @@ export const weeklyWorkouts: Record<number, WorkoutDay> = {
   },
 };
 
-export function getTodayWorkout(date = new Date()): WorkoutDay {
-  return weeklyWorkouts[date.getDay()];
+function getRankTier(rank: string) {
+      if (rank === "S" || rank === "A") return "advanced";
+      if (rank === "B") return "intermediate";
+      return "base";
+}
+
+export function getTodayWorkout(rank = "E", date = new Date()): WorkoutDay {
+  const baseWorkout = weeklyWorkouts[date.getDay()];
+  const tier = getRankTier(rank);
+
+  if (tier === "base") {
+    return {
+      ...baseWorkout,
+      difficulty: "BASE DUNGEON",
+    };
+  }
+
+  if (tier === "intermediate") {
+    return {
+      ...baseWorkout,
+      difficulty: "AWAKENED DUNGEON",
+      blocks: baseWorkout.blocks.map((block) =>
+        block
+          .replace("5 pushups", "10 pushups")
+          .replace("3 x 8 pushups", "3 x 12 pushups")
+          .replace("3 x 10 pushups", "3 x 15 pushups")
+          .replace("3 x 12 bodyweight squats", "4 x 12 bodyweight squats")
+          .replace("3 x 12 squats", "4 x 12 squats")
+          .replace("After Work Run", "After Work Run + 5 min cooldown walk")
+          .replace("4 boxing rounds", "5 boxing rounds")
+          .replace("5 boxing rounds", "6 boxing rounds")
+      ),
+    };
+  }
+
+  return {
+    ...baseWorkout,
+    difficulty: "MONARCH DUNGEON",
+    blocks: baseWorkout.blocks.map((block) =>
+      block
+        .replace("5 pushups", "15 pushups")
+        .replace("3 x 8 pushups", "4 x 12 pushups")
+        .replace("3 x 10 pushups", "4 x 15 pushups")
+        .replace("3 x 12 bodyweight squats", "4 x 15 bodyweight squats")
+        .replace("3 x 12 squats", "4 x 15 squats")
+        .replace("After Work Run", "After Work Run + 6 x 20 sec strides")
+        .replace("4 boxing rounds", "6 boxing rounds")
+        .replace("5 boxing rounds", "7 boxing rounds")
+        .replace("10 min core circuit", "15 min core circuit")
+    ),
+  };
 }

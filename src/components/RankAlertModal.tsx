@@ -17,13 +17,16 @@ export default function RankAlertModal({
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="rank-popup-pulse relative w-[420px] rounded-[24px] border border-cyan-400/30 bg-[#050b1a]/95 p-6 shadow-[0_0_45px_rgba(34,211,238,0.22)]">
+      <div className="rank-popup-pulse relative w-[420px] overflow-hidden rounded-[24px] border border-cyan-300/40 bg-[linear-gradient(180deg,rgba(3,10,24,0.98)_0%,rgba(8,5,22,0.98)_100%)] p-6 shadow-[0_0_55px_rgba(34,211,238,0.28),0_0_90px_rgba(168,85,247,0.12)]">
+        <div className="pointer-events-none absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(56,189,248,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(168,85,247,0.06)_1px,transparent_1px)] [background-size:22px_22px]" />
+        <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300 to-transparent" />
+        <div className="pointer-events-none absolute -top-20 left-1/2 h-40 w-40 -translate-x-1/2 rounded-full bg-cyan-400/20 blur-3xl" />
         <div className="rank-flash-overlay pointer-events-none absolute inset-0 rounded-[24px] bg-cyan-300/10" />
-
-        <p className="mb-2 text-[11px] uppercase tracking-[0.38em] text-cyan-300">
-          SYSTEM MESSAGE
-        </p>
-
+        <div className="relative z-10">
+          <p className="mb-2 text-[11px] uppercase tracking-[0.38em] text-cyan-300">
+            SYSTEM MESSAGE
+          </p>
+        </div>
         <h2 className="mb-3 text-2xl font-semibold tracking-wide text-white">
           {rankChangeDirection === "down"
             ? "RANK REGRESSION DETECTED"
@@ -45,7 +48,9 @@ export default function RankAlertModal({
           >
             →
           </span>
-          <span className="text-4xl font-bold text-cyan-200">{rankUpAlert.to}</span>
+          <span className="text-5xl font-bold tracking-widest text-cyan-200 drop-shadow-[0_0_12px_rgba(34,211,238,0.8)]">
+            {rankUpAlert.to}
+          </span>
         </div>
 
         <div
