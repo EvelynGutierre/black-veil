@@ -36,6 +36,7 @@ type Props = {
   playSound: (src: string, volume?: number, interrupt?: boolean) => void;
   completedBlocks: number[];
   toggleBlock: (index: number) => void;
+  missedYesterday: boolean;
 };
 
 export default function OverviewTab({
@@ -61,6 +62,7 @@ export default function OverviewTab({
   streakMultiplier,
   completedBlocks,
   toggleBlock,
+  missedYesterday,
 }: Props) {
 
   const completedDungeonBlocks = completedBlocks.length;
@@ -203,6 +205,17 @@ export default function OverviewTab({
                 ? "All assigned quests are cleared."
                 : `${remainingDirectives.length} quests remain under observation.`}
             </p>
+
+            {missedYesterday && (
+              <div className="mt-4 rounded-xl border border-pink-400/25 bg-pink-500/10 px-4 py-3">
+                <p className="text-[10px] uppercase tracking-[0.28em] text-pink-300">
+                  Penalty Protocol
+                </p>
+                <p className="mt-2 text-sm text-slate-200">
+                  Previous archive incomplete. System monitoring intensified.
+                </p>
+              </div>
+            )}
           </HoloPanel>
 
           <div

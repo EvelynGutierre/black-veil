@@ -327,6 +327,17 @@ export default function App() {
   const latestSavedRecord = dailyHistoryWithToday[0] ?? null;
   const [completedBlocks, setCompletedBlocks] = useState<number[]>([]);
 
+  const yesterday = useMemo(() => {
+    const d = new Date(today);
+    d.setDate(d.getDate() - 1);
+    return d.toISOString().slice(0, 10);
+  }, [today]);
+
+  const missedYesterday = useMemo(() => {
+    const record = dailyHistory.find((entry) => entry.date === yesterday);
+    return record ? record.completionRate < 70 : false;
+  }, [dailyHistory, yesterday]);
+
   function toggleBlock(index: number) {
   setCompletedBlocks((prev) =>
     prev.includes(index)
@@ -682,6 +693,7 @@ function toggleAllBlocks() {
                     playSound={playSound}
                     completedBlocks={completedBlocks}
                     toggleBlock={toggleBlock}
+                    missedYesterday={missedYesterday}
                   />
                 )}
 
