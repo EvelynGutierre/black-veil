@@ -14,56 +14,55 @@ export default function TrainingTab({
   return (
     <div className="space-y-5">
       <SectionHeader
-        eyebrow="Training Archive"
-        title="Training Log"
-        description="Record boxing, conditioning, recovery, and strength output."
+        eyebrow="System Archive"
+        title="System Archive"
+        description="Record combat output, conditioning, recovery, and system performance."
       />
 
       <div className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr]">
         <HoloPanel
-          title="System Input"
-          subtitle="Daily record synchronization"
+          title="Daily Input"
+          subtitle="Archive synchronization"
           glow="blue"
         >
           <div className="mx-auto max-w-[430px] rounded-[30px] border border-cyan-400/12 bg-[linear-gradient(180deg,rgba(4,16,38,0.82)_0%,rgba(2,10,24,0.95)_100%)] p-5 shadow-[0_0_30px_rgba(34,211,238,0.08)]">
             <div className="mb-4 border border-cyan-400/15 bg-cyan-400/5 px-4 py-2 text-center">
               <p className="text-xs uppercase tracking-[0.28em] text-cyan-300/80">
-                Status Input
+                Operative Input
               </p>
             </div>
 
             <div className="space-y-4">
               <div className="grid grid-cols-[1fr_auto] items-center gap-4">
-                <span className="text-slate-200">Morning Weight</span>
+                <span className="text-slate-200">Body Mass</span>
                 <span className="text-slate-400">[{trainingLog.weight || "--"}]</span>
               </div>
 
               <div className="grid grid-cols-[1fr_auto] items-center gap-4">
-                <span className="text-slate-200">Sleep Hours</span>
+                <span className="text-slate-200">Recovery Hours</span>
                 <span className="text-slate-400">[{trainingLog.sleep || "--"}]</span>
               </div>
 
               <div className="grid grid-cols-[1fr_auto] items-center gap-4">
-                <span className="text-slate-200">Water Intake</span>
+                <span className="text-slate-200">Hydration</span>
                 <span className="text-slate-400">[{trainingLog.water || "--"}]</span>
               </div>
 
               <div className="grid grid-cols-[1fr_auto] items-center gap-4">
-                <span className="text-slate-200">Steps</span>
+                <span className="text-slate-200">Movement</span>
                 <span className="text-slate-400">[{trainingLog.steps || "--"}]</span>
               </div>
 
               <div className="grid grid-cols-[1fr_auto] items-center gap-4">
-                <span className="text-slate-200">Boxing Rounds</span>
+                <span className="text-slate-200">Combat Output</span>
                 <span className="text-slate-400">[{trainingLog.boxingRounds || "--"}]</span>
               </div>
             </div>
 
             <div className="mt-8 space-y-2 text-center text-sm leading-7 text-slate-300">
-              <p>NOTICE: Incomplete archive data</p>
-              <p>may reduce system accuracy</p>
+              <p>SYSTEM WARNING: Incomplete data detected.</p>
               <p>
-                during <span className="text-cyan-300">tracking analysis</span>.
+                <span className="text-cyan-300">Accuracy compromised</span>.
               </p>
             </div>
 
