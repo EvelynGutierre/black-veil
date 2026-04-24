@@ -79,7 +79,15 @@ export default function OverviewTab({
 
       ((lower.includes("plank") ||
         lower.includes("glute") ||
-        lower.includes("mountain")) &&
+        lower.includes("plank") ||
+        lower.includes("glute") ||
+        lower.includes("mountain") ||
+        lower.includes("squat") ||
+        lower.includes("lunge") ||
+        lower.includes("wall sit") ||
+        lower.includes("stairs") ||
+        lower.includes("carry") ||
+        lower.includes("step-up")) &&
         directives.some((d) => d.id === "workout" && d.completed))
     );
   }).length;
@@ -104,7 +112,13 @@ export default function OverviewTab({
     if (
       lower.includes("plank") ||
       lower.includes("glute") ||
-      lower.includes("mountain")
+      lower.includes("mountain") ||
+      lower.includes("squat") ||
+      lower.includes("lunge") ||
+      lower.includes("wall sit") ||
+      lower.includes("stairs") ||
+      lower.includes("carry") ||
+      lower.includes("step-up")
     ) {
       return "workout";
     }
