@@ -230,9 +230,9 @@ export default function OverviewTab({
           <HoloPanel title="Notification" subtitle="System Notice" glow="blue">
             <p className="text-base sm:text-lg font-medium text-slate-100">
               {dailyStatus === "Round Complete"
-                ? "Round complete. Maintain your edge."
+                ? "Quest cleared. System growth confirmed."
                 : dailyStatus === "Holding the Line"
-                ? "Holding the line. Continue pursuit."
+                ? "Minimum compliance achieved. Continue progression"
                 : dailyStatus === "Pressure Rising"
                 ? "User condition unstable. Compliance required."
                 : "Penalty risk detected. Resume training immediately."}
@@ -240,7 +240,7 @@ export default function OverviewTab({
 
             <p className="mt-3 text-sm text-slate-400">
               {dailyStatus === "Round Complete"
-                ? "All directives are cleared."
+                ? "All assigned directives are cleared."
                 : `${remainingDirectives.length} directives remain under observation.`}
             </p>
           </HoloPanel>
