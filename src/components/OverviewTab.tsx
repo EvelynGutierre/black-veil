@@ -174,7 +174,7 @@ export default function OverviewTab({
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-5">
             <div className="rounded-2xl border border-cyan-400/10 bg-cyan-400/5 p-3 sm:p-4">
               <p className="text-xs uppercase tracking-[0.25em] text-slate-400">
-                Veil
+                Power
               </p>
               <p className="mt-3 text-3xl sm:text-4xl font-bold text-cyan-300">
                 <AnimatedNumber value={totalVeil} />
