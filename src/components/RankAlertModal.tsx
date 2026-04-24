@@ -21,19 +21,19 @@ export default function RankAlertModal({
         <div className="rank-flash-overlay pointer-events-none absolute inset-0 rounded-[24px] bg-cyan-300/10" />
 
         <p className="mb-2 text-[11px] uppercase tracking-[0.38em] text-cyan-300">
-          System Alert
+          SYSTEM MESSAGE
         </p>
 
         <h2 className="mb-3 text-2xl font-semibold tracking-wide text-white">
           {rankChangeDirection === "down"
-            ? "Rank Regression Detected"
-            : "Rank Advancement Detected"}
+            ? "RANK REGRESSION DETECTED"
+            : "RANK EVALUATION COMPLETE"}
         </h2>
 
         <p className="mb-6 text-sm text-slate-400">
           {rankChangeDirection === "down"
-            ? "Your operational classification has fallen. Recovery is required."
-            : "Your operational classification has improved."}
+            ? "Combat output has declined. Recovery protocol required."
+            : "User growth confirmed. New classification assigned."}
         </p>
 
         <div className="mb-6 flex items-center justify-center gap-4">
@@ -56,14 +56,14 @@ export default function RankAlertModal({
           }`}
         >
           <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500">
-            New Job
+            ASSIGNED CLASS
           </p>
           <p className="mt-2 text-lg font-medium text-cyan-200">
             {jobTitle}
           </p>
 
           <p className="mt-4 text-[10px] uppercase tracking-[0.3em] text-slate-500">
-            Title
+            SYSTEM TITLE
           </p>
           <p className="mt-2 text-sm text-white">
             {statusTitle}
@@ -74,9 +74,7 @@ export default function RankAlertModal({
           onClick={onClose}
           className="w-full rounded-xl border border-cyan-400/30 bg-cyan-500/10 px-4 py-3 text-sm font-medium text-cyan-200 transition hover:bg-cyan-500/20"
         >
-          {rankChangeDirection === "down"
-            ? "Acknowledge Setback"
-            : "Confirm Advancement"}
+          CONFIRM STATUS CHANGE
         </button>
       </div>
     </div>
