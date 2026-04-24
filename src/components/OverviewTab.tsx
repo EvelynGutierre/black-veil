@@ -349,9 +349,15 @@ export default function OverviewTab({
                   (lower.includes("steps") &&
                     directives.some((d) => d.id === "steps" && d.completed)) ||
 
-                  ((lower.includes("plank") ||
-                    lower.includes("glute") ||
-                    lower.includes("mountain")) &&
+                  (lower.includes("plank") ||
+                  lower.includes("glute") ||
+                  lower.includes("mountain") ||
+                  lower.includes("squat") ||
+                  lower.includes("lunge") ||
+                  lower.includes("wall sit") ||
+                  lower.includes("stairs") ||
+                  lower.includes("carry") ||
+                  lower.includes("step-up") &&
                     directives.some((d) => d.id === "workout" && d.completed));
                 const directiveId = getDirectiveIdForBlock(block);
                   
