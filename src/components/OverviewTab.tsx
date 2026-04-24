@@ -134,8 +134,8 @@ export default function OverviewTab({
     <div className="space-y-5">
       <SectionHeader
         eyebrow="Notification"
-        title="Mission Overview"
-        description="Prepare for today’s protocol and monitor active system output."
+        title="Daily System Check"
+        description="Complete assigned tasks to increase power and rank."
       />
 
       <div className="grid gap-3 sm:gap-5 grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] max-w-full">
@@ -212,7 +212,7 @@ export default function OverviewTab({
               onClick={finalizeDay}
               className="rounded-xl border border-cyan-300/30 bg-cyan-500/10 px-4 py-2 text-sm font-medium text-cyan-200 transition hover:bg-cyan-500/20"
             >
-              Finalize Protocol
+              Complete Daily Quest
             </button>
           </div>
           <div className="mt-3 text-right">
@@ -227,15 +227,15 @@ export default function OverviewTab({
         </HoloPanel>
 
         <div className="space-y-5">
-          <HoloPanel title="Notification" subtitle="System broadcast" glow="blue">
+          <HoloPanel title="Notification" subtitle="System Notice" glow="blue">
             <p className="text-base sm:text-lg font-medium text-slate-100">
               {dailyStatus === "Round Complete"
                 ? "Round complete. Maintain your edge."
                 : dailyStatus === "Holding the Line"
                 ? "Holding the line. Continue pursuit."
                 : dailyStatus === "Pressure Rising"
-                ? "Pressure rising. Lock back in."
-                : "You are behind. Regain control now."}
+                ? "User condition unstable. Compliance required."
+                : "Penalty risk detected. Resume training immediately."}
             </p>
 
             <p className="mt-3 text-sm text-slate-400">
