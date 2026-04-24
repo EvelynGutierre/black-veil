@@ -93,13 +93,13 @@ export default function OverviewTab({
   return (
     <div className="space-y-5">
       <SectionHeader
-        eyebrow="Notification"
-        title="Daily System Check"
-        description="Complete assigned tasks to increase power and rank."
+        eyebrow="System Notice"
+        title="Daily Quest"
+        description="Complete assigned objectives to increase power and rank."
       />
 
       <div className="grid gap-3 sm:gap-5 grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] max-w-full">
-        <HoloPanel title="Status" subtitle="Current pursuit metrics" glow="cyan">
+        <HoloPanel title="System Status" subtitle="Current operative metrics" glow="cyan">
           <div className="relative mt-5">
             {xpPop !== null && (
               <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2">
@@ -156,7 +156,7 @@ export default function OverviewTab({
 
           <div className="mt-5">
             <div className="mb-2 flex items-center justify-between text-xs uppercase tracking-[0.22em] text-slate-400">
-              <span>Directive Progress</span>
+              <span>Quest progress</span>
               <span>{completedCount}/{directives.length}</span>
             </div>
 
@@ -187,7 +187,7 @@ export default function OverviewTab({
         </HoloPanel>
 
         <div className="space-y-5">
-          <HoloPanel title="Notification" subtitle="System Notice" glow="blue">
+          <HoloPanel title="System Notice" subtitle="System Notice" glow="blue">
             <p className="text-base sm:text-lg font-medium text-slate-100">
               {dailyStatus === "Round Complete"
                 ? "Quest cleared. System growth confirmed."
@@ -327,13 +327,13 @@ export default function OverviewTab({
       </div>
 
       <HoloPanel
-        title="Remaining Directives"
-        subtitle="Unfinished tasks still active"
+        title="Remaining Questss"
+        subtitle="Incomplete objectives remain active"
         glow="violet"
       >
         <div className="space-y-3 text-sm">
           {remainingDirectives.length === 0 ? (
-            <p className="text-cyan-200">No remaining directives. Round complete.</p>
+            <p className="text-cyan-200">No remaining quests. Daily quest complete.</p>
           ) : (
             remainingDirectives.slice(0, 5).map((directive) => (
               <div
@@ -348,8 +348,8 @@ export default function OverviewTab({
         </div>
       </HoloPanel>
       <HoloPanel
-          title="Latest Saved Record"
-          subtitle="Most recent archived day"
+          title="Latest Archive Record"
+          subtitle="Most recent system archive"
           glow="blue"
         >
     {latestSavedRecord ? (
@@ -393,8 +393,8 @@ export default function OverviewTab({
     )}
   </HoloPanel>
   <HoloPanel
-    title="Recent Logs"
-    subtitle="Archived pursuit records"
+    title="Recent Archives"
+    subtitle="Archived system records"
     glow="blue"
   >
     {dailyHistory.length === 0 ? (
