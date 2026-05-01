@@ -1,0 +1,29 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="aura">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="100" cy="100" r="90" fill="url(#aura)" />
+
+  <polygon
+    points="100,30 130,90 170,100 130,110 100,170 70,110 30,100 70,90"
+    fill="#0f172a"
+    stroke="#a855f7"
+    stroke-width="3"
+  />
+
+  <text
+    x="100"
+    y="115"
+    font-size="40"
+    text-anchor="middle"
+    fill="#e9d5ff"
+    font-weight="bold"
+    font-family="Arial"
+  >
+    ARISE
+  </text>
+</svg>
