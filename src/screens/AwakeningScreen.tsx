@@ -919,7 +919,7 @@ export default function AwakeningScreen() {
               <input
                 key={key}
                 className="system-input"
-                placeholder={key.toUpperCase()}
+                placeholder={formatLabel(key).toUpperCase()}
                 value={value}
                 onChange={(e) =>
                   setBaseline((current) => ({
