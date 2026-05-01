@@ -37,8 +37,10 @@ type BodyMetrics = {
   chest: string;
   waist: string;
   belly: string;
-  legs: string;
-  arms: string;
+  leftArm: string;
+  rightArm: string;
+  leftLeg: string;
+  rightLeg: string;
 };
 
 type WorkoutTask = {
@@ -78,8 +80,10 @@ const defaultBodyMetrics: BodyMetrics = {
   chest: "",
   waist: "",
   belly: "",
-  legs: "",
-  arms: "",
+  leftArm: "",
+  rightArm: "",
+  leftLeg: "",
+  rightLeg: "",
 };
 
 const DEV_MODE = false;
@@ -129,16 +133,24 @@ function getSavedData(player = getActivePlayer()): SaveData | null {
   }
 }
 
+function formatLabel(key: string) {
+  return key
+    .replace(/([A-Z])/g, " $1")
+    .replace(/^./, (str) => str.toUpperCase());
+}
+
 export default function AwakeningScreen() {
   const [activePlayer, setActivePlayer] = useState(getActivePlayer());
   const savedData = getSavedData(activePlayer);
   const [playerName, setPlayerName] = useState(savedData?.playerName ?? "");
-  const [baseline, setBaseline] = useState<BodyMetrics>(
-    savedData?.baseline ?? defaultBodyMetrics
-  );
-  const [monthEnd, setMonthEnd] = useState<BodyMetrics>(
-    savedData?.monthEnd ?? defaultBodyMetrics
-  );
+  const [baseline, setBaseline] = useState<BodyMetrics>({
+    ...defaultBodyMetrics,
+    ...(savedData?.baseline ?? {}),
+  }); 
+  const [monthEnd, setMonthEnd] = useState<BodyMetrics>({
+    ...defaultBodyMetrics,
+    ...(savedData?.monthEnd ?? {}),
+  });
   const [xpPopup, setXpPopup] = useState<number | null>(null);
   const todayString = getToday();
 
@@ -909,7 +921,7 @@ export default function AwakeningScreen() {
               <input
                 key={key}
                 className="system-input"
-                placeholder={key.toUpperCase()}
+                placeholder={formatLabel(key).toUpperCase()}
                 value={value}
                 onChange={(e) =>
                   setBaseline((current) => ({
@@ -1377,7 +1389,7 @@ export default function AwakeningScreen() {
 
             {Object.entries(baseline).map(([key, startValue]) => (
               <div key={key} className="compare-row">
-                <span>{key.toUpperCase()}</span>
+                <span>{formatLabel(key)}</span>
                 <small>START: {startValue || "--"}</small>
 
                 <input
@@ -1402,7 +1414,7 @@ export default function AwakeningScreen() {
 
                 return (
                   <p key={key}>
-                    <b>{key.toUpperCase()}</b>: {startValue || "--"} →{" "}
+                    <b>{formatLabel(key)}</b>: {startValue || "--"} →{" "}
                     {currentValue || "--"} (
                     {getDifference(String(startValue), String(currentValue))})
                   </p>
