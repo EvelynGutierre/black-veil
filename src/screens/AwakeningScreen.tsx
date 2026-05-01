@@ -143,12 +143,14 @@ export default function AwakeningScreen() {
   const [activePlayer, setActivePlayer] = useState(getActivePlayer());
   const savedData = getSavedData(activePlayer);
   const [playerName, setPlayerName] = useState(savedData?.playerName ?? "");
-  const [baseline, setBaseline] = useState<BodyMetrics>(
-    savedData?.baseline ?? defaultBodyMetrics
-  );
-  const [monthEnd, setMonthEnd] = useState<BodyMetrics>(
-    savedData?.monthEnd ?? defaultBodyMetrics
-  );
+  const [baseline, setBaseline] = useState<BodyMetrics>({
+    ...defaultBodyMetrics,
+    ...(savedData?.baseline ?? {}),
+  }); 
+  const [monthEnd, setMonthEnd] = useState<BodyMetrics>({
+    ...defaultBodyMetrics,
+    ...(savedData?.monthEnd ?? {}),
+  });
   const [xpPopup, setXpPopup] = useState<number | null>(null);
   const todayString = getToday();
 
