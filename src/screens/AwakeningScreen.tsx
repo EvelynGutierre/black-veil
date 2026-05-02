@@ -394,8 +394,7 @@ export default function AwakeningScreen() {
   }
 
   function getGoal(quest: Quest) {
-    const penaltyMultiplier = missedYesterday ? 1.5 : 1;
-    return Math.round(quest.goal * penaltyMultiplier);
+    return quest.goal;
   }
 
   function getIncrement(quest: Quest) {
@@ -642,6 +641,10 @@ export default function AwakeningScreen() {
     }
 
     const today = getToday();
+
+    const penalty = missedYesterday ? 0.8 : 1;
+
+    gainXp(Math.floor(availableQuestXp * penalty));
 
     if (lastCompletedDate !== today) {
       setStreak((current) => (allComplete ? current + 1 : current));
