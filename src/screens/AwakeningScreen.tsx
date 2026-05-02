@@ -1075,6 +1075,9 @@ export default function AwakeningScreen() {
                       <div
                         key={`${quest.name}-${index}`}
                         className={`quest-item ${completed ? "completed" : ""}`}
+                        onClick={() => handleQuestClick(index)}
+                        role="button"
+                        tabIndex={0}
                       >
                         <span>
                           <small className="quest-category">{quest.category}</small>
@@ -1093,14 +1096,20 @@ export default function AwakeningScreen() {
 
                         <button
                           className="system-btn secondary quest-mini-btn"
-                          onClick={() => handleQuestClick(index)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleQuestClick(index);
+                          }}
                         >
                           +
                         </button>
 
                         <button
                           className="system-btn secondary quest-mini-btn danger"
-                          onClick={() => decreaseProgress(index)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            decreaseProgress(index);
+                          }}
                         >
                           ×
                         </button>

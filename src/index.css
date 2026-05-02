@@ -2089,3 +2089,52 @@ body {
       inset 0 0 8px var(--rank-bg);
   }
 }
+
+.quest-item,
+.quest-mini-btn,
+.dashboard-card,
+.system-btn,
+.quest-complete-btn,
+.back-btn,
+.workout-task {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.quest-item::before,
+.dashboard-card::before,
+.system-root::after,
+.system-grid,
+.system-energy,
+.system-rail,
+.system-side,
+.shadow-gate,
+.shadow-orb,
+.system-runes,
+.aura-panel,
+.shadow-silhouette,
+.monarch-silhouette {
+  pointer-events: none;
+}
+
+.quest-item,
+.quest-mini-btn {
+  position: relative;
+  z-index: 80;
+}
+
+@media (max-width: 700px) {
+  .quest-item {
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    cursor: pointer;
+  }
+
+  .quest-progress {
+    justify-self: end;
+  }
+
+  .quest-mini-btn {
+    min-height: 48px;
+  }
+}
