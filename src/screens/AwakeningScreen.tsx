@@ -296,35 +296,45 @@ export default function AwakeningScreen() {
   function getTodayProtocol() {
     const day = new Date().getDay();
 
-    if (day === 1) {
-      return {
+    const protocols = [
+      {
+        dayName: "SUNDAY",
+        title: "RECOVERY WALK + CORE",
+        questName: "Core Training",
+      },
+      {
         dayName: "MONDAY",
         title: "RUN + CORE",
         questName: "30 Min Run / Cardio",
-      };
-    }
-
-    if (day === 3) {
-      return {
+      },
+      {
+        dayName: "TUESDAY",
+        title: "STRENGTH PROTOCOL",
+        questName: "Strength Training",
+      },
+      {
         dayName: "WEDNESDAY",
-        title: "RUN + STRENGTH",
+        title: "BOXING / CARDIO",
         questName: "30 Min Run / Cardio",
-      };
-    }
+      },
+      {
+        dayName: "THURSDAY",
+        title: "CORE PROTOCOL",
+        questName: "Core Training",
+      },
+      {
+        dayName: "FRIDAY",
+        title: "STRENGTH + CONDITIONING",
+        questName: "Strength Training",
+      },
+      {
+        dayName: "SATURDAY",
+        title: "ENDURANCE QUEST",
+        questName: "30 Min Run / Cardio",
+      },
+    ];
 
-    return {
-      dayName: [
-        "SUNDAY",
-        "MONDAY",
-        "TUESDAY",
-        "WEDNESDAY",
-        "THURSDAY",
-        "FRIDAY",
-        "SATURDAY",
-      ][day],
-      title: "MORNING STRENGTH PROTOCOL",
-      questName: "Strength Training",
-    };
+    return protocols[day];
   }
 
   function getSystemStatus() {
