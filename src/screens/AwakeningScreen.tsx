@@ -87,7 +87,7 @@ const defaultBodyMetrics: BodyMetrics = {
 };
 
 const DEV_MODE = false;
-const CLAIM_THRESHOLD = 0.8;
+const CLAIM_THRESHOLD = 0.66;
 
 const defaultQuests: Quest[] = [
   { name: "Drink 3L Water", current: 0, goal: 3, category: "RECOVERY", xp: 15 },
